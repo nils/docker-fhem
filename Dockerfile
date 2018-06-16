@@ -1,10 +1,11 @@
-FROM resin/rpi-raspbian:jessie-20160831  
+FROM codingwell/rpi-raspbian-qemu
 
 MAINTAINER sejnub
 
 ENV port 7072
 
 # See https://debian.fhem.de/ and https://forum.fhem.de/index.php?topic=27679.0 for details
+RUN [ "cross-build-start" ]
 
 # Update your package administration:
 RUN apt-get update
@@ -75,7 +76,7 @@ RUN echo 'attr global    nofork     1\n'    >> /opt/fhem/fhem.cfg && \
     echo 'attr WEBphone  csrfToken  none\n' >> /opt/fhem/fhem.cfg && \
     echo 'attr WEBtablet csrfToken  none\n' >> /opt/fhem/fhem.cfg 
 
-
+RUN [ "cross-build-end" ]
 
 #### docker stuff ####
 
